@@ -247,7 +247,7 @@ function AppRater:rate()
 			local osName = application:getDeviceInfo()
 			if osName == "Android" and self.conf.androidRate ~= "" then
 				application:openUrl(self.conf.androidRate)
-			elseif osName == "IOS" and self.conf.iosRate ~= "" then
+			elseif osName == "iOS" and self.conf.iosRate ~= "" then
 				application:openUrl(self.conf.iosRate)
 			end
 		elseif event.buttonIndex == 2 then
