@@ -232,11 +232,11 @@ function AppRater:step()
 	else
 		local now = os.timer()
 		local days = math.floor((((now - self.data.startDate) / 60) / 60) / 24)
-		print(days)
 		if days >= self.data.daysToWait then
 			self:rate()
 		end
 	end
+	table.save(self.data, "|D|apprater")
 end
 
 function AppRater:rate()
@@ -244,6 +244,8 @@ function AppRater:rate()
 
 	local function onComplete(event)
 		if event.buttonIndex == 1 then
+			self.data.toRate = false
+			table.save(self.data, "|D|apprater")
 			local osName = application:getDeviceInfo()
 			if osName == "Android" and self.conf.androidRate ~= "" then
 				application:openUrl(self.conf.androidRate)
